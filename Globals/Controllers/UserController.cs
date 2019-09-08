@@ -31,6 +31,21 @@ namespace Globals.Controllers
             return null;
         }
 
+        [HttpGet]
+        public ActionResult ActionChangePassword()
+        {
+            /*string userName, string password*/
+            UsuarioDao user = new UsuarioDao();
+            return Content( user.UpdatePassword("1", "2").ToString());
+
+
+        }
+
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
 
     }
 }

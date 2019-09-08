@@ -35,3 +35,4 @@ function succesLogin(data) {
     $("#registrar").hide();
     $("#logoutIcon").show();
 }
+
