@@ -15,5 +15,9 @@ namespace Globales.DataSource
             return de.selectUserForLogin(userName, password).FirstOrDefault();
         }
 
+        public insertUser_Result insertUser(string userName, string password) {
+            return de.insertUser(userName, password).FirstOrDefault();
+        }
+
     }
 }

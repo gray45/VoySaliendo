@@ -40,5 +40,18 @@ namespace Globales.DataSource
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<selectUserForLogin_Result>("selectUserForLogin", userNameParameter, passwordParameter);
         }
+    
+        public virtual ObjectResult<insertUser_Result> insertUser(string userName, string password)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<insertUser_Result>("insertUser", userNameParameter, passwordParameter);
+        }
     }
 }

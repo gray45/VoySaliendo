@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -29,16 +31,29 @@
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
-                
 
-                    <ul class="nav navbar-nav pull-right">
-                        <li id="loginIcon"><button class="btn-lg btn-primary" onclick="showlogin()">Login</button></li>
-                        <li id="user" ></li>
-                        <li id="registrar" style="display:inline-block"><button class="btn-lg btn-success" onclick="">Registrase</button></li>
-                        <li><button id="logoutIcon" class="btn-lg btn-danger" style="display:none" onclick="">Logout</button></li>
 
-                    </ul>
-               
+                <ul class="nav navbar-nav pull-right">
+                    @{
+                        if (Session["userName"] == null)
+                        {
+                            <li id="loginIcon"><button class="btn-lg btn-primary" onclick="showlogin()">Login</button></li>
+
+                            <li id="registrar" style="display:inline-block"><button class="btn-lg btn-success" onclick="showRegister()">Registrase</button></li>
+                        }
+                        else
+                        {
+                            string userName = Session["userName"].ToString();
+                            <li> <a id='loginClass' class="btn"> @userName  </a></li>
+                            <li><a id="logoutClass" class="btn" onclick="logout()">Logout</a></li>
+                        }
+                    }
+
+                    <li id="user"></li>
+                    <li><a id="logoutClass2" style="display:none" onclick="logout()" class="btn">Logout</a></li>
+
+                </ul>
+
             </div>
         </div>
     </div>

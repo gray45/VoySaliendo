@@ -26,3 +26,32 @@ textarea {
 .gris {
 color:lightgray;
 }
+
+#logoutClass {
+    background-color: #3D0102;
+    font-size: large;
+}
+
+#logoutClass2 {
+    background-color: #3D0102;
+    font-size: large;
+}
+
+#loginClass {
+    background-color: #020230;
+    font-size: large;
+}
+
+#user {
+    background-color: #020230;
+    font-size: large;
+}
+
+.error {
+color:darkred;
+
+}
+
+.error input {
+        border-color: darkred;
+  }

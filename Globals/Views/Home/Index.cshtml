@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -37,7 +38,7 @@
                         </div>
 
                         <div class="md-form mb-5">
-                            <div class="form-group" id="divUserName">
+                            <div class="form-group" id="divPassword">
                                 <label class="control-label">
                                     Password
                                 </label>
@@ -50,10 +51,16 @@
                         </div>
                     </div>
                     <div class="col-md-3"></div>
+
+                </div>
+
+                <div class="md-form mb-5" id="mensajeLogin">
+
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-lg btn-info" onclick="Login()"> Login</button>
+                <button id="loginBotom" class="btn btn-lg btn-info" onclick="Login('login')"> Login</button>
+                <button id="registrarseBotom" class="btn btn-lg btn-success" style="display:none" onclick="Login('registrarse')"> Registrarse</button>
             </div>
         </div>
     </div>

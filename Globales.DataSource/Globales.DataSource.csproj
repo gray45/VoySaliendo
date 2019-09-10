@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="insertUser_Result.cs">
+      <DependentUpon>GlobalesEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UsuarioDao.cs" />
     <Compile Include="GlobalesEntityModel.Context.cs">
       <AutoGen>True</AutoGen>
