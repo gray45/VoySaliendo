@@ -3,11 +3,14 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Voy Saliendo</h1>
-    <p class="lead"></p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+<div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 600px " width="100%" >
+    <div id="Mapa_de_usuario"></div>
 </div>
+        </div>
+    </div>
 
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -60,10 +63,18 @@
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button id="loginBotom" class="btn btn-lg btn-info" onclick="Login('login')"> Login</button>
-                <button id="registrarseBotom" class="btn btn-lg btn-success" style="display:none" onclick="Login('registrarse')"> Registrarse</button>
+                <button id="registrarseBotom" class="btn btn-lg btn-success" onclick="Login('registrarse')"> Registrarse</button>
             </div>
         </div>
     </div>
 </div>
+
+<input type="text"  name="lactitud" id="lactitud" style="display:none"  />
+<input type="text"  name="longitud" id="longitud" style="display:none"  />
+<input type="text" class="form-control" id="inputDireccion" style="display:none" autofocus="autofocus" placeholder="Presione el botón → "  />
+
+
+
+
 
 

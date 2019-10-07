@@ -1,10 +1,12 @@
-﻿function showlogin() {
+﻿
+
+function showlogin() {
     $("#mensajeLogin").empty();
     $("#divUserName").removeClass("error");
     $("#divPassword").removeClass("error");
     $("#userName").val("");
     $("#password").val("");
-    $("#registrarseBotom").hide();
+  //  $("#registrarseBotom").hide();
     $("#loginBotom").show();
 
     $("#loginModal").modal({
@@ -49,17 +51,21 @@ function Login(action) {
         });
     }
     else {
-        $("#mensajeLogin").append("<i class='fas fa-exclamation-triangle btn-lg error prefix'></i><h4 style='display:inline-block'> Rellene los campos en rojo</h4>")
+        $("#mensajeLogin").append("<i class='fas fa-exclamation-triangle btn-lg error prefix'></i><h4 style='display:inline-block'> Rellene los campos en rojo</h4>");
     }
 }
 
 function succesLogin(data) {
     $("#loginIcon").hide();
     $("#user").empty();
-    $("#user").append("<a>" + data.userName + "</a>");
+    $("#loginLi").hide();
+    $("#loginClass").empty();
+   // $("#user").append("<a id='loginClass' class='btn'>" + data.userName + "</a>");
+    $("#user").append("<strong>" + data.userName + "</strong>");
     $("#user").show();
     $("#registrar").hide();
-    $("#logoutClass2").show();
+    $("#logoutClass").show();
+    Obtener_ubicacion();
 }
 
 function succesLogout() {
@@ -67,7 +73,7 @@ function succesLogout() {
     $("#user").empty();
     $("#user").hide();
     $("#registrar").show();
-    $("#logoutClass2").hide();
+    $("#logoutClass").hide();
 }
 
 function logout() {
@@ -96,14 +102,14 @@ function error() {
     $("#mensajeLogin").empty();
     $("#divUserName").addClass("error");
     $("#divPassword").addClass("error");
-    $("#mensajeLogin").append("<i class='fas fa-exclamation-triangle btn-lg error prefix'></i><h4 style='display:inline-block'> Usuario o Contraseña incorrectos</h4>")
+    $("#mensajeLogin").append("<i class='fas fa-exclamation-triangle btn-lg error prefix'></i><h4 style='display:inline-block'> Usuario o Contraseña incorrectos</h4>");
 }
 
 function errorRegistarse() {
     $("#mensajeLogin").empty();
     $("#divUserName").addClass("error");
     $("#divPassword").addClass("error");
-    $("#mensajeLogin").append("<i class='fas fa-exclamation-triangle btn-lg error prefix'></i><h4 style='display:inline-block'> El usuario ya existe </h4>")
+    $("#mensajeLogin").append("<i class='fas fa-exclamation-triangle btn-lg error prefix'></i><h4 style='display:inline-block'> El usuario ya existe </h4>");
 }
 
 function isempty() {
@@ -141,3 +147,24 @@ function showRegister() {
     }); 
 
 }
+
+    $(document).ready(function () {
+
+        var user = $("#textUser").val();
+        if (user !== "") {
+
+           // $("#user").append("<a id='loginClass' class='btn'>" + user + "</a>");
+            $("#user").append("<strong>" + user + "</strong>");
+            $("#user").show();
+            $("#logoutClass").show();
+            Obtener_ubicacion();
+        }
+        else {
+            $("#loginIcon").show();
+            $("#register").show();
+            showlogin();
+        }
+
+    });
+
+
