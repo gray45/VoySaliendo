@@ -49,9 +49,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="getParadasByRuta_Result.cs">
+      <DependentUpon>GlobalesEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="insertRoad_Result.cs">
+      <DependentUpon>GlobalesEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="insertUser_Result.cs">
       <DependentUpon>GlobalesEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="RutaDao.cs" />
+    <Compile Include="selectRutaPorId_Result.cs">
+      <DependentUpon>GlobalesEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="selectRutas_Result.cs">
+      <DependentUpon>GlobalesEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="selectUserForLogin_Result.cs">
+      <DependentUpon>GlobalesEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParadaDao.cs" />
     <Compile Include="UsuarioDao.cs" />
     <Compile Include="GlobalesEntityModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -69,9 +86,6 @@
       <DependentUpon>GlobalesEntityModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="selectUserForLogin_Result.cs">
-      <DependentUpon>GlobalesEntityModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="GlobalesEntityModel.edmx">

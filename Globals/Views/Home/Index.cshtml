@@ -6,11 +6,12 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-10">
-<div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 600px " width="100%" >
-    <div id="Mapa_de_usuario"></div>
-</div>
+        <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 600px">
+            <div id="Mapa_de_usuario"></div>
+
         </div>
     </div>
+</div>
 
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -18,9 +19,7 @@
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h3>Login</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
             </div>
             <div class="modal-body mx-3">
                 <div class="row">
@@ -69,9 +68,227 @@
     </div>
 </div>
 
-<input type="text"  name="lactitud" id="lactitud" style="display:none"  />
-<input type="text"  name="longitud" id="longitud" style="display:none"  />
-<input type="text" class="form-control" id="inputDireccion" style="display:none" autofocus="autofocus" placeholder="Presione el botón → "  />
+<input type="text" id="lactitud" style="display:none" />
+<input type="text" id="longitud" style="display:none"  />
+<input type="text" id="idRuta" style="display:none" />
+<input type="text" id="inputParada" style="display:none" />
+
+
+@*////////////////////////////////////////////////////////////  modal rutas  //////////////////////////////////////////*@
+
+
+<div class="modal fade" id="rutaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <div class="row">
+                    <div class="col-md-10 col-xs-9"></div>
+                    <div class="col-md-2 col-xs-3">
+                        <i class="fas fa-times btn-lg btn-danger" onclick="cancel('rutaModal')"></i>
+                    </div>
+                </div>
+                <h3>Rutas</h3>
+            </div>
+                    <div class="modal-body mx-3">
+                        <div class="row">
+                            <div class="col-md-10"></div>
+                            <div class="col-md-2">
+                                <div class="md-form mb-5">
+                                    <button class="btn-lg btn-success" onclick="showNuevaRutaModal()"><i class="fas fa-plus"></i></button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="md-form mb-8" id="panel">
+
+                        </div>
+
+                        <div class="md-form mb-5">
+                            <div class="card-footer">
+                                <li class="pagination pagination-sm" id="paginacionOpcModal"></li>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                    </div>
+                </div>
+            </div>
+</div>
+
+@*////////////////////////////////////////////////////////////  modal nueva ruta //////////////////////////////////////////*@
+
+<div class="modal fade" id="rutaNuevaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <div class="row">
+                    <div class="col-md-10 col-xs-9"></div>
+                    <div class="col-md-2 col-xs-3">
+                        <i class="fas fa-times btn-lg btn-danger" onclick="cancel('rutaNuevaModal')"></i>
+                    </div>
+                </div>
+                <h3>Agregar Ruta</h3>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="md-form mb-5">
+                            <div class="form-group" id="divOrigenRuta">
+                                <label class="control-label">
+                                    Origen
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fas fa-map-marker-alt green" aria-hidden="true"></i></span>
+                                    <input type="text" id="origenRuta" class="form-control" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">
+                                Destino
+                            </label>
+                            <div class="input-group" id="divDestinoRuta">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt red" aria-hidden="true"></i></span>
+                                <input type="text" id="destinoRuta" class="form-control" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <div class="md-form mb-5">
+                            <button class="btn-lg btn-success" onclick="agregarRuta()"><i class="fas fa-plus"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="md-form mb-5" id="mensajeRuta">
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*////////////////////////////////////////////////////////////  modal mensaje confirmar //////////////////////////////////////////*@
+
+<div class="modal fade" id="alerModalConfirm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <div class="row">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2" id="cancelBoton">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <i id="icono" class="fas fa-exclamation-triangle btn-lg prefix "></i>
+                    <h4 id="mensaje" style="display: inline"></h4>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center" id="footerModal">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*////////////////////////////////////////////////////////////  modal view ruta //////////////////////////////////////////*@
+
+<div class="modal fade" id="rutaViewModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <div class="row">
+                    <div class="col-md-10 col-xs-9"></div>
+                    <div class="col-md-2 col-xs-3">
+                        <i class="fas fa-times btn-lg btn-danger" onclick="cancel('rutaViewModal')"></i>
+                    </div>
+                    <a href="#" data-toggle="tooltip" title="Doble click para editar"><div id="headerRutaView"></div></a>
+                </div>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="row">
+                        <div class="col-md-6" id="divParada">
+
+                            <a href="#" data-toggle="tooltip" title="Paradas">
+                                <div id="divParadaBoton" onclick="GetParadas(1)">
+                                    <h1 class="centro"><i class="fas fa-map-marker-alt"></i></h1>
+
+                                    <br />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6" id="divBus">
+                            <a href="#" data-toggle="tooltip" title="Auto Buses">
+                                <div id="divBusBoton">
+                                    <h1 class="centro"><i class="fas fa-bus"></i></h1>
+                                    <br />
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <br />
+                    <div id="divGenerico">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div id="divBuscarParadas" class="input-group escondida">
+                                    <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    <input type="text" id="buscarParadas" class="form-control" />
+                                </div>
+                                <div id="divBuscarBuses" class="input-group escondida">
+                                    <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    <input type="text" id="buscarBuses" class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="col-md-2">
+                                <div id="divNuevaParada" class="escondida">
+                                    <button class="btn-lg btn-success" onclick="agregarParada()"><i class="fas fa-plus"></i></button>
+                                </div>
+                                <div id="divNuevoBus" class="escondida">
+                                    <button class="btn-lg btn-success" onclick=""><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="md-form mb-8" id="panelGenerico">
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <li class="pagination pagination-sm" id="paginacionOpcModalGenerico"></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
 
 
 

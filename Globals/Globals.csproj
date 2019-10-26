@@ -149,6 +149,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RutaController.cs" />
+    <Compile Include="Controllers\ParadaController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -169,6 +171,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\fontawesome-markers.min.js" />
     <Content Include="Scripts\geolocalizacion\geoLocalizacion.js" />
     <Content Include="Scripts\geolocalizacion\Mapa_de_usuario.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -182,6 +185,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\user\navbar.js" />
+    <Content Include="Scripts\user\Paradas.js" />
+    <Content Include="Scripts\user\Rutas.js" />
     <Content Include="Scripts\user\user.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

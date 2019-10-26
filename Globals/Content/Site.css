@@ -30,6 +30,17 @@ color:lightgray;
 }
 
 
+.green {
+color: darkgreen;
+}
+
+.red {
+    color: darkred;
+}
+
+.blue {
+    color :darkblue;
+}
 
 #logoutClass2 {
     background-color: #3D0102;
@@ -54,6 +65,85 @@ color:darkred;
 #Mapa_de_usuario {
     height: 100%;
 }
+
+#divParadaBoton {
+    border: 2px solid #ffffff;
+    border-radius: 2px;
+    border-bottom: 2px;
+    margin-bottom: 1px;
+    margin-top: 1px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    background-color: #355afc;
+    width: 100%;
+    text-align: center;
+    color: #233999;
+    padding-top: 10px;
+}
+
+#divBusBoton {
+    border: 3px solid #ffffff;
+    background-color: #f2ec33;
+    border-radius: 2px;
+    border-bottom: 2px;
+    margin-bottom: 1px;
+    margin-top: 1px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    width: 100%;
+    text-align: center;
+    color: #b5b126;
+    padding-top: 10px;
+}
+
+.tabla {
+    background: #e8e8e8;
+    border: 3px solid #ffffff;
+    border-radius: 2px;
+    border-bottom: 2px;
+    margin-bottom: 1px;
+    margin-top: 1px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+
+}
+
+.tablaParada {
+    background: #a3b2cf;
+    border: 3px solid #ffffff;
+    border-radius: 2px;
+    border-bottom: 2px;
+    margin-bottom: 1px;
+    margin-top: 1px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+}
+
+.centro {
+    position: relative;
+    margin: 0px auto;
+    top: 2px auto;
+}
+
+.transparent-input {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    width: 30%;
+}
+
+.alaPar {
+display:inline-block;
+}
+
+.escondida{
+    display:none;
+}
+
+
 /* Optional: Makes the sample page fill the window. */
 html, body {
     height: 100%;
@@ -179,9 +269,11 @@ body {
     width: 25px;
     transition-delay: 0.3s;
     background-color: #3a3f48;
-    height: 90%;
+    height: 100%;
     z-index:999;
 }
+
+
 
 .page-wrapper.toggled #show-sidebar {
     left: -40px;

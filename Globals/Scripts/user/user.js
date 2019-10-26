@@ -1,6 +1,7 @@
 ﻿
 
 function showlogin() {
+    $('#loginModal').modal({ backdrop: 'static', keyboard: false })
     $("#mensajeLogin").empty();
     $("#divUserName").removeClass("error");
     $("#divPassword").removeClass("error");
@@ -60,20 +61,26 @@ function succesLogin(data) {
     $("#user").empty();
     $("#loginLi").hide();
     $("#loginClass").empty();
-   // $("#user").append("<a id='loginClass' class='btn'>" + data.userName + "</a>");
     $("#user").append("<strong>" + data.userName + "</strong>");
     $("#user").show();
     $("#registrar").hide();
     $("#logoutClass").show();
     Obtener_ubicacion();
+    var ventana_ancho = $(window).width();
+
+    if (ventana_ancho < 1300) {
+        $(".page-wrapper").removeClass("toggled");
+    }
+    else {
+        $(".page-wrapper").addClass("toggled");
+    }
 }
 
 function succesLogout() {
-    $("#loginIcon").show();
     $("#user").empty();
     $("#user").hide();
-    $("#registrar").show();
-    $("#logoutClass").hide();
+    showlogin();
+    $(".page-wrapper").removeClass("toggled");
 }
 
 function logout() {
@@ -132,21 +139,9 @@ function isempty() {
     return errores;
 }
 
-function showRegister() {
 
-    $("#mensajeLogin").empty();
-    $("#divUserName").removeClass("error");
-    $("#divPassword").removeClass("error");
-    $("#userName").val("");
-    $("#password").val("");
-    $("#registrarseBotom").show();
-    $("#loginBotom").hide();
 
-    $("#loginModal").modal({
-        show: 'false'
-    }); 
 
-}
 
     $(document).ready(function () {
 
@@ -163,6 +158,8 @@ function showRegister() {
             $("#loginIcon").show();
             $("#register").show();
             showlogin();
+            var ventana_ancho = $(window).width();
+            $(".page-wrapper").removeClass("toggled");
         }
 
     });

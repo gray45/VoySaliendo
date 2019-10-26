@@ -5,10 +5,29 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="VoysaliendoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="getParadasByRuta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRuta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insertRoad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="pasaPor" Type="varchar(max)" Mode="In" />
+          <Parameter Name="origen" Type="varchar" Mode="In" />
+          <Parameter Name="destino" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="insertUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="NuevaParada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idRuta" Type="int" Mode="In" />
+          <Parameter Name="lat" Type="varchar" Mode="In" />
+          <Parameter Name="long" Type="varchar" Mode="In" />
+          <Parameter Name="ubicacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="selectRutaPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="selectRutas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="selectUserForLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
@@ -19,15 +38,59 @@
     <edmx:ConceptualModels>
       <Schema Namespace="VoysaliendoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true" >
-          <FunctionImport Name="selectUserForLogin" ReturnType="Collection(VoysaliendoModel.selectUserForLogin_Result)">
-            <Parameter Name="UserName" Mode="In" Type="String" />
-            <Parameter Name="Password" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="insertUser" ReturnType="Collection(VoysaliendoModel.insertUser_Result)">
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="insertRoad" ReturnType="Collection(VoysaliendoModel.insertRoad_Result)">
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="pasaPor" Mode="In" Type="String" />
+            <Parameter Name="origen" Mode="In" Type="String" />
+            <Parameter Name="destino" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="selectRutaPorId" ReturnType="Collection(VoysaliendoModel.selectRutaPorId_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="selectRutas" ReturnType="Collection(VoysaliendoModel.selectRutas_Result)" />
+          <FunctionImport Name="selectUserForLogin" ReturnType="Collection(VoysaliendoModel.selectUserForLogin_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getParadasByRuta" ReturnType="Collection(VoysaliendoModel.getParadasByRuta_Result)">
+          <Parameter Name="idRuta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NuevaParada">
+            <Parameter Name="idRuta" Mode="In" Type="Int32" />
+            <Parameter Name="lat" Mode="In" Type="String" />
+            <Parameter Name="long" Mode="In" Type="String" />
+            <Parameter Name="ubicacion" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="insertUser_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="userName" Nullable="false" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="insertRoad_Result">
+          <Property Type="Int32" Name="idRuta" Nullable="false" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="PasaPor" Nullable="true" />
+          <Property Type="String" Name="Origen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="selectRutaPorId_Result">
+          <Property Type="Int32" Name="idRuta" Nullable="false" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="PasaPor" Nullable="true" />
+          <Property Type="String" Name="Origen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="selectRutas_Result">
+          <Property Type="Int32" Name="idRuta" Nullable="false" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="PasaPor" Nullable="true" />
+          <Property Type="String" Name="Origen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Destino" Nullable="true" MaxLength="50" />
+        </ComplexType>
         <ComplexType Name="selectUserForLogin_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="userName" Nullable="false" MaxLength="25" />
@@ -35,9 +98,11 @@
           <Property Type="String" Name="latitud" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="longitud" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="insertUser_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="userName" Nullable="false" MaxLength="25" />
+        <ComplexType Name="getParadasByRuta_Result">
+          <Property Type="Int32" Name="idParada" Nullable="false" />
+          <Property Type="String" Name="lactitud" Nullable="false" MaxLength="45" />
+          <Property Type="String" Name="longitud" Nullable="false" MaxLength="45" />
+          <Property Type="String" Name="ubicacion" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -45,6 +110,47 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="VoysaliendoModelStoreContainer" CdmEntityContainer="DBEntities" >
+          <FunctionImportMapping FunctionImportName="insertUser" FunctionName="VoysaliendoModel.Store.insertUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VoysaliendoModel.insertUser_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insertRoad" FunctionName="VoysaliendoModel.Store.insertRoad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VoysaliendoModel.insertRoad_Result">
+                <ScalarProperty Name="idRuta" ColumnName="idRuta" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="PasaPor" ColumnName="PasaPor" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="selectRutaPorId" FunctionName="VoysaliendoModel.Store.selectRutaPorId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VoysaliendoModel.selectRutaPorId_Result">
+                <ScalarProperty Name="idRuta" ColumnName="idRuta" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="PasaPor" ColumnName="PasaPor" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="selectRutas" FunctionName="VoysaliendoModel.Store.selectRutas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VoysaliendoModel.selectRutas_Result">
+                <ScalarProperty Name="idRuta" ColumnName="idRuta" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="PasaPor" ColumnName="PasaPor" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="Destino" ColumnName="Destino" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="selectUserForLogin" FunctionName="VoysaliendoModel.Store.selectUserForLogin">
             <ResultMapping>
               <ComplexTypeMapping TypeName="VoysaliendoModel.selectUserForLogin_Result">
@@ -56,14 +162,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="insertUser" FunctionName="VoysaliendoModel.Store.insertUser">
+          <FunctionImportMapping FunctionImportName="getParadasByRuta" FunctionName="VoysaliendoModel.Store.getParadasByRuta">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="VoysaliendoModel.insertUser_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="userName" ColumnName="userName" />
+              <ComplexTypeMapping TypeName="VoysaliendoModel.getParadasByRuta_Result">
+                <ScalarProperty Name="idParada" ColumnName="idParada" />
+                <ScalarProperty Name="lactitud" ColumnName="lactitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NuevaParada" FunctionName="VoysaliendoModel.Store.NuevaParada" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

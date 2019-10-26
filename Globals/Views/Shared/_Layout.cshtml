@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>Voy Saliendo </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -15,29 +15,31 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByZHxYbNttxQSIXAurj86k05qWJxyH2ZY&libraries=places"
             async defer></script>
+    <script src="~/Scripts/fontawesome-markers.min.js"></script>
 
     <script src="~/Scripts/geolocalizacion/Mapa_de_usuario.js"></script>
     <script src="~/Scripts/geolocalizacion/geoLocalizacion.js"></script>
     <script src="~/Scripts/user/user.js"></script>
     <script src="~/Scripts/user/navbar.js"></script>
-
+    <script src="~/Scripts/user/Rutas.js"></script>
+    <script src="~/Scripts/user/Paradas.js"></script>
 </head>
 <body>
-   
+
     @{
         if (Session["userName"] == null)
         {
-            <inpunt type="text" id="textUser"></inpunt>
+            <input type="text" id="textUser" style="display:none" />
 
         }
         else
         {
             string userName = Session["userName"].ToString();
 
-            <input type="text" id="textUser" style="display:none" value="@userName"></input>
+            <input type="text" id="textUser" style="display:none" value="@userName" />
         }
     }
-    
+
     <div class="page-wrapper chiller-theme toggled">
         <a id="show-sidebar" class="btn btn-lg btn-dark" href="#">
             <i class="fas fa-chevron-right" id="arrow"></i>
@@ -56,20 +58,29 @@
                              alt="User picture">
                     </div>
                     <div class="user-info">
-                        <h3 id="user" class="user-name">
-                            
-                        </h3>
+                        <h3 id="user" class="user-name"></h3>
                         <span class="user-role">Administrator</span>
-                        
+
                     </div>
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-search">
                     <div>
                         <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                            <input type="text" id="inputDireccion" class="form-control" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="sidebar-search">
+                    <div>
+                        <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
                             <input type="text" name="destino" id="destino" class="form-control" placeholder="A dónde vas..." />
                         </div>
+
                     </div>
                 </div>
                 <!-- sidebar-search  -->
@@ -86,34 +97,34 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#">
-                                            Registrar Ruta
+                                        <a href="#" onclick="showRutasModal()">
+                                            Rutas
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            Registrar Autobus
+                                            Autobuses
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            Registrar Parada
+                                            Paradas
                                         </a>
                                     </li>
 
                                 </ul>
                             </div>
                         </li>
-                        
-                       
+
+
                     </ul>
                 </div>
                 <!-- sidebar-menu  -->
             </div>
             <!-- sidebar-content  -->
             <div class="sidebar-footer">
-                
-                <a href="#">
+
+                <a href="#" style="margin:10px">
                     <i class="fa fa-power-off btn-danger btn-lg" onclick="logout()" id="logoutClass"></i>
                 </a>
             </div>
@@ -125,8 +136,6 @@
         <div class="container body-content">
 
             @RenderBody()
-            <hr />
-            <footer></footer>
         </div>
     </div>
 
